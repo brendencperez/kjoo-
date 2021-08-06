@@ -1,0 +1,67 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+library(ISLR)
+data("Carseats")
+?Carseats
+attach(Carseats)
+
+
+num_cols <- unlist(lapply(Carseats, is.numeric))  
+num_cols
+CarNum <- Carseats[, num_cols]
+str(CarNum)
+
+
+maxs <- apply(CarNum, 2, max) 
+mins <- apply(CarNum, 2, min)
+
+
+scaled.data = as.data.frame(scale(CarNum, center = mins, scale = maxs - mins))
+head(scaled.data)
+summary(scaled.data)
+
+data <- data.frame(scaled.data, Carseats[!num_cols])
+str(data)
+
+set.seed(123)
+indx <- sample(2, nrow(data), replace = T, prob = c(0.8, 0.2))
+train <- data[indx == 1, ]
+test <- data[indx == 2, ]
+
+library(nnet)
+nn  <- nnet(Sales ~ ., data = train, linout=T, size=10, decay=0.01, maxit=1000)
+
+
+
+summary(nn) 
+```
+```{r}
+library(devtools)
+source_url('https://gist.githubusercontent.com/fawda123/7471137/raw/466c1474d0a505ff044412703516c34f1a4684a5/nnet_plot_update.r')
+plot.nnet(nn)
+nn$wts 
+nn$fitted.values 
+nn$residuals
+nn$convergence
+```
+```{r}
+nn.preds <- predict(nn, test)
+nn.preds
+MSE <- mean((nn.preds - test$Sales)^2)
+MSE
+```
