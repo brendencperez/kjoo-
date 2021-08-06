@@ -1,0 +1,1228 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={R Notebook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{R Notebook}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+This is an \href{http://rmarkdown.rstudio.com}{R Markdown} Notebook.
+When you execute code within the notebook, the results appear beneath
+the code.
+
+Try executing this chunk by clicking the \emph{Run} button within the
+chunk or by placing your cursor inside it and pressing
+\emph{Ctrl+Shift+Enter}.
+
+Add a new chunk by clicking the \emph{Insert Chunk} button on the
+toolbar or by pressing \emph{Ctrl+Alt+I}.
+
+When you save the notebook, an HTML file containing the code and output
+will be saved alongside it (click the \emph{Preview} button or press
+\emph{Ctrl+Shift+K} to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the
+editor. Consequently, unlike \emph{Knit}, \emph{Preview} does not run
+any R code chunks. Instead, the output of the chunk when it was last run
+in the editor is displayed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ISLR)}
+\KeywordTok{data}\NormalTok{(}\StringTok{"Carseats"}\NormalTok{)}
+\NormalTok{?Carseats}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## starting httpd help server ... done
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{attach}\NormalTok{(Carseats)}
+
+
+\NormalTok{num_cols <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{lapply}\NormalTok{(Carseats, is.numeric))  }
+\NormalTok{num_cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Sales   CompPrice      Income Advertising  Population       Price 
+##        TRUE        TRUE        TRUE        TRUE        TRUE        TRUE 
+##   ShelveLoc         Age   Education       Urban          US 
+##       FALSE        TRUE        TRUE       FALSE       FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CarNum <-}\StringTok{ }\NormalTok{Carseats[, num_cols]}
+\KeywordTok{str}\NormalTok{(CarNum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    400 obs. of  8 variables:
+##  $ Sales      : num  9.5 11.22 10.06 7.4 4.15 ...
+##  $ CompPrice  : num  138 111 113 117 141 124 115 136 132 132 ...
+##  $ Income     : num  73 48 35 100 64 113 105 81 110 113 ...
+##  $ Advertising: num  11 16 10 4 3 13 0 15 0 0 ...
+##  $ Population : num  276 260 269 466 340 501 45 425 108 131 ...
+##  $ Price      : num  120 83 80 97 128 72 108 120 124 124 ...
+##  $ Age        : num  42 65 59 55 38 78 71 67 76 76 ...
+##  $ Education  : num  17 10 12 14 13 16 15 10 10 17 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maxs <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(CarNum, }\DecValTok{2}\NormalTok{, max) }
+\NormalTok{mins <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(CarNum, }\DecValTok{2}\NormalTok{, min)}
+
+
+\NormalTok{scaled.data =}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{scale}\NormalTok{(CarNum, }\DataTypeTok{center =}\NormalTok{ mins, }\DataTypeTok{scale =}\NormalTok{ maxs }\OperatorTok{-}\StringTok{ }\NormalTok{mins))}
+\KeywordTok{head}\NormalTok{(scaled.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Sales CompPrice    Income Advertising Population     Price       Age
+## 1 0.5838967 0.6224490 0.5252525   0.3793103  0.5330661 0.5748503 0.3090909
+## 2 0.6896128 0.3469388 0.2727273   0.5517241  0.5010020 0.3532934 0.7272727
+## 3 0.6183159 0.3673469 0.1414141   0.3448276  0.5190381 0.3353293 0.6181818
+## 4 0.4548248 0.4081633 0.7979798   0.1379310  0.9138277 0.4371257 0.5454545
+## 5 0.2550707 0.6530612 0.4343434   0.1034483  0.6613226 0.6227545 0.2363636
+## 6 0.6644130 0.4795918 0.9292929   0.4482759  0.9839679 0.2874251 0.9636364
+##   Education
+## 1     0.875
+## 2     0.000
+## 3     0.250
+## 4     0.500
+## 5     0.375
+## 6     0.750
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(scaled.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Sales          CompPrice          Income        Advertising    
+##  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:0.3313   1st Qu.:0.3878   1st Qu.:0.2197   1st Qu.:0.0000  
+##  Median :0.4604   Median :0.4898   Median :0.4848   Median :0.1724  
+##  Mean   :0.4607   Mean   :0.4895   Mean   :0.4814   Mean   :0.2288  
+##  3rd Qu.:0.5728   3rd Qu.:0.5918   3rd Qu.:0.7071   3rd Qu.:0.4138  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##    Population         Price             Age           Education     
+##  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:0.2585   1st Qu.:0.4551   1st Qu.:0.2682   1st Qu.:0.2500  
+##  Median :0.5251   Median :0.5569   Median :0.5364   Median :0.5000  
+##  Mean   :0.5107   Mean   :0.5497   Mean   :0.5150   Mean   :0.4875  
+##  3rd Qu.:0.7786   3rd Qu.:0.6407   3rd Qu.:0.7455   3rd Qu.:0.7500  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(scaled.data, Carseats[}\OperatorTok{!}\NormalTok{num_cols])}
+\KeywordTok{str}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    400 obs. of  11 variables:
+##  $ Sales      : num  0.584 0.69 0.618 0.455 0.255 ...
+##  $ CompPrice  : num  0.622 0.347 0.367 0.408 0.653 ...
+##  $ Income     : num  0.525 0.273 0.141 0.798 0.434 ...
+##  $ Advertising: num  0.379 0.552 0.345 0.138 0.103 ...
+##  $ Population : num  0.533 0.501 0.519 0.914 0.661 ...
+##  $ Price      : num  0.575 0.353 0.335 0.437 0.623 ...
+##  $ Age        : num  0.309 0.727 0.618 0.545 0.236 ...
+##  $ Education  : num  0.875 0 0.25 0.5 0.375 0.75 0.625 0 0 0.875 ...
+##  $ ShelveLoc  : Factor w/ 3 levels "Bad","Good","Medium": 1 2 3 3 1 1 3 2 3 3 ...
+##  $ Urban      : Factor w/ 2 levels "No","Yes": 2 2 2 2 2 1 2 2 1 1 ...
+##  $ US         : Factor w/ 2 levels "No","Yes": 2 2 2 2 1 2 1 2 1 2 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{indx <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(data), }\DataTypeTok{replace =}\NormalTok{ T, }\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\FloatTok{0.2}\NormalTok{))}
+\NormalTok{train <-}\StringTok{ }\NormalTok{data[indx }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
+\NormalTok{test <-}\StringTok{ }\NormalTok{data[indx }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{, ]}
+
+\KeywordTok{library}\NormalTok{(nnet)}
+\NormalTok{nn  <-}\StringTok{ }\KeywordTok{nnet}\NormalTok{(Sales }\OperatorTok{~}\StringTok{ }\NormalTok{., }\DataTypeTok{data =}\NormalTok{ train, }\DataTypeTok{linout=}\NormalTok{T, }\DataTypeTok{size=}\DecValTok{10}\NormalTok{, }\DataTypeTok{decay=}\FloatTok{0.01}\NormalTok{, }\DataTypeTok{maxit=}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # weights:  131
+## initial  value 118.897428 
+## iter  10 value 2.787889
+## iter  20 value 1.469418
+## iter  30 value 1.355768
+## iter  40 value 1.301456
+## iter  50 value 1.280936
+## iter  60 value 1.268716
+## iter  70 value 1.254081
+## iter  80 value 1.240087
+## iter  90 value 1.234015
+## iter 100 value 1.230017
+## iter 110 value 1.222253
+## iter 120 value 1.217819
+## iter 130 value 1.214741
+## iter 140 value 1.212699
+## iter 150 value 1.209826
+## iter 160 value 1.207630
+## iter 170 value 1.206481
+## iter 180 value 1.205644
+## iter 190 value 1.205019
+## iter 200 value 1.204382
+## iter 210 value 1.203957
+## iter 220 value 1.203600
+## iter 230 value 1.203287
+## iter 240 value 1.203068
+## iter 250 value 1.202866
+## iter 260 value 1.202660
+## iter 270 value 1.202214
+## iter 280 value 1.201089
+## iter 290 value 1.200304
+## iter 300 value 1.199998
+## iter 310 value 1.199919
+## iter 320 value 1.199904
+## iter 330 value 1.199897
+## iter 340 value 1.199895
+## iter 350 value 1.199894
+## iter 360 value 1.199894
+## iter 370 value 1.199893
+## iter 380 value 1.199892
+## iter 390 value 1.199891
+## iter 400 value 1.199891
+## iter 410 value 1.199891
+## final  value 1.199891 
+## converged
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(nn) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## a 11-10-1 network with 131 weights
+## options were - linear output units  decay=0.01
+##   b->h1  i1->h1  i2->h1  i3->h1  i4->h1  i5->h1  i6->h1  i7->h1  i8->h1  i9->h1 
+##    0.15   -0.76    0.53    0.06    0.01    0.31   -0.21    0.10    0.46    0.10 
+## i10->h1 i11->h1 
+##    0.13    0.87 
+##   b->h2  i1->h2  i2->h2  i3->h2  i4->h2  i5->h2  i6->h2  i7->h2  i8->h2  i9->h2 
+##   -0.18   -0.41    0.59    0.05    0.10   -0.89   -0.36   -0.17   -0.17   -0.05 
+## i10->h2 i11->h2 
+##   -0.17   -0.01 
+##   b->h3  i1->h3  i2->h3  i3->h3  i4->h3  i5->h3  i6->h3  i7->h3  i8->h3  i9->h3 
+##   -0.13    0.14   -0.16   -0.43   -0.35    1.10   -0.49    0.51   -0.20    0.69 
+## i10->h3 i11->h3 
+##   -0.46   -0.39 
+##   b->h4  i1->h4  i2->h4  i3->h4  i4->h4  i5->h4  i6->h4  i7->h4  i8->h4  i9->h4 
+##    0.00    0.01    0.00    0.00    0.00   -0.01    0.00    0.00    0.00    0.00 
+## i10->h4 i11->h4 
+##    0.00   -0.01 
+##   b->h5  i1->h5  i2->h5  i3->h5  i4->h5  i5->h5  i6->h5  i7->h5  i8->h5  i9->h5 
+##   -0.05    0.77   -0.62   -0.22   -0.74   -0.75   -0.55    0.06    0.78    0.16 
+## i10->h5 i11->h5 
+##    0.40    0.36 
+##   b->h6  i1->h6  i2->h6  i3->h6  i4->h6  i5->h6  i6->h6  i7->h6  i8->h6  i9->h6 
+##    0.16    0.22   -0.37    0.17    0.94   -0.43   -0.26    0.30    0.28    0.75 
+## i10->h6 i11->h6 
+##    0.06   -0.04 
+##   b->h7  i1->h7  i2->h7  i3->h7  i4->h7  i5->h7  i6->h7  i7->h7  i8->h7  i9->h7 
+##    0.00    0.00    0.00    0.00    0.00   -0.01    0.00    0.00    0.00    0.00 
+## i10->h7 i11->h7 
+##    0.00    0.00 
+##   b->h8  i1->h8  i2->h8  i3->h8  i4->h8  i5->h8  i6->h8  i7->h8  i8->h8  i9->h8 
+##    0.00    0.00    0.00    0.00    0.00   -0.01    0.00    0.00    0.00    0.00 
+## i10->h8 i11->h8 
+##    0.00    0.00 
+##   b->h9  i1->h9  i2->h9  i3->h9  i4->h9  i5->h9  i6->h9  i7->h9  i8->h9  i9->h9 
+##   -0.36   -0.64   -0.94   -0.19    0.12   -0.08    0.45   -0.30   -0.26   -0.08 
+## i10->h9 i11->h9 
+##    0.07    0.42 
+##   b->h10  i1->h10  i2->h10  i3->h10  i4->h10  i5->h10  i6->h10  i7->h10 
+##    -0.01     0.34     0.52     0.41    -0.32    -0.56     0.25     0.14 
+##  i8->h10  i9->h10 i10->h10 i11->h10 
+##    -0.03     0.44    -0.74     0.30 
+##   b->o  h1->o  h2->o  h3->o  h4->o  h5->o  h6->o  h7->o  h8->o  h9->o h10->o 
+##   0.01  -1.09   0.96  -1.20   0.02   1.33   1.10   0.02   0.01  -1.08   0.98
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(devtools)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'devtools' was built under R version 4.0.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: usethis
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'usethis' was built under R version 4.0.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source_url}\NormalTok{(}\StringTok{'https://gist.githubusercontent.com/fawda123/7471137/raw/466c1474d0a505ff044412703516c34f1a4684a5/nnet_plot_update.r'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## SHA-1 hash of file is 74c80bd5ddbc17ab3ae5ece9c0ed9beb612e87ef
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot.nnet}\NormalTok{(nn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: scales
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'scales' was built under R version 4.0.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: reshape
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'reshape' was built under R version 4.0.3
+\end{verbatim}
+
+\includegraphics{rnotebook_NNML_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nn}\OperatorTok{$}\NormalTok{wts }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  1.543439e-01 -7.562023e-01  5.268504e-01  5.942795e-02  5.498041e-03
+##   [6]  3.111233e-01 -2.132086e-01  1.026323e-01  4.577944e-01  1.032675e-01
+##  [11]  1.343146e-01  8.693384e-01 -1.813756e-01 -4.141424e-01  5.889469e-01
+##  [16]  4.852627e-02  9.828993e-02 -8.856405e-01 -3.591433e-01 -1.745590e-01
+##  [21] -1.692825e-01 -4.849325e-02 -1.703480e-01 -1.031372e-02 -1.294879e-01
+##  [26]  1.394786e-01 -1.554173e-01 -4.287658e-01 -3.463316e-01  1.099114e+00
+##  [31] -4.920233e-01  5.107662e-01 -1.990707e-01  6.873806e-01 -4.638542e-01
+##  [36] -3.886085e-01 -1.417634e-04  5.019032e-03  2.273305e-03  1.027879e-03
+##  [41]  3.687942e-04 -1.049489e-02 -2.199165e-03  1.134260e-03  4.401284e-04
+##  [46]  1.408989e-03  2.827470e-04 -5.751142e-03 -5.216020e-02  7.701902e-01
+##  [51] -6.209330e-01 -2.161575e-01 -7.422023e-01 -7.495017e-01 -5.518040e-01
+##  [56]  5.600687e-02  7.769885e-01  1.553993e-01  3.992309e-01  3.632311e-01
+##  [61]  1.619225e-01  2.185411e-01 -3.683955e-01  1.706148e-01  9.391329e-01
+##  [66] -4.328378e-01 -2.605365e-01  2.995843e-01  2.817675e-01  7.450324e-01
+##  [71]  6.226100e-02 -3.655873e-02  1.055151e-04  4.288430e-03  1.983514e-03
+##  [76]  9.547178e-04  5.174647e-04 -8.566983e-03 -1.739832e-03  8.769682e-04
+##  [81]  8.664121e-05  1.501718e-03  8.915779e-05 -4.658819e-03 -3.070721e-04
+##  [86]  3.571759e-03  1.693674e-03  6.240479e-04  2.190133e-05 -7.854774e-03
+##  [91] -1.661214e-03  8.051272e-04  2.135154e-04  9.195521e-04  2.348305e-04
+##  [96] -4.455326e-03 -3.649149e-01 -6.449961e-01 -9.416275e-01 -1.921452e-01
+## [101]  1.239150e-01 -7.959709e-02  4.451648e-01 -3.004519e-01 -2.629824e-01
+## [106] -8.023585e-02  7.096082e-02  4.242714e-01 -8.272094e-03  3.361320e-01
+## [111]  5.186321e-01  4.117037e-01 -3.214711e-01 -5.632103e-01  2.475634e-01
+## [116]  1.419840e-01 -3.101553e-02  4.435189e-01 -7.397845e-01  2.972065e-01
+## [121]  1.256388e-02 -1.093823e+00  9.562505e-01 -1.202785e+00  1.725068e-02
+## [126]  1.332478e+00  1.097151e+00  1.510923e-02  1.367329e-02 -1.080168e+00
+## [131]  9.836404e-01
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nn}\OperatorTok{$}\NormalTok{fitted.values }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## 1   0.45692849
+## 2   0.72499454
+## 3   0.56221634
+## 6   0.63550836
+## 7   0.36508910
+## 9   0.36747400
+## 10  0.31429966
+## 12  0.73535805
+## 13  0.20789792
+## 14  0.74179649
+## 15  0.64028953
+## 17  0.53105681
+## 18  0.73343469
+## 19  0.84906810
+## 22  0.69184239
+## 23  0.31738458
+## 25  0.61731957
+## 26  0.83548946
+## 27  0.55219642
+## 28  0.29292357
+## 29  0.25049414
+## 30  0.38514478
+## 33  0.35580224
+## 34  0.54715789
+## 35  0.25562178
+## 36  0.62937304
+## 37  0.59576353
+## 38  0.39956441
+## 39  0.35157108
+## 40  0.20396727
+## 41  0.12621639
+## 42  0.42298252
+## 43  0.69425456
+## 44  0.33307722
+## 45  0.31734293
+## 46  0.27448992
+## 47  0.77690292
+## 48  0.34305181
+## 49  0.29547185
+## 51  0.17442467
+## 52  0.26173073
+## 53  0.40461114
+## 54  0.37386129
+## 55  0.28476197
+## 56  0.31404335
+## 57  0.65868267
+## 58  0.03561311
+## 60  0.34530991
+## 61  0.49275205
+## 62  0.37336571
+## 63  0.16045806
+## 64  0.54581104
+## 66  0.28873051
+## 69  0.75195678
+## 70  0.48069976
+## 71  0.52899796
+## 72  0.38980081
+## 73  0.36345172
+## 74  0.77737907
+## 75  0.39726252
+## 76  0.55242310
+## 77  0.61329752
+## 78  0.51714797
+## 79  0.23608977
+## 80  0.54681194
+## 81  0.51540213
+## 82  0.40527095
+## 83  0.71238021
+## 84  0.29700243
+## 85  0.15034426
+## 86  0.46768359
+## 90  0.42466555
+## 91  0.33796631
+## 92  0.26451466
+## 93  0.37528734
+## 94  0.58575683
+## 95  0.46249335
+## 96  0.27705820
+## 97  0.59204862
+## 98  0.51875822
+## 99  0.73468607
+## 100 0.27236694
+## 101 0.36736272
+## 102 0.46373432
+## 103 0.38606493
+## 105 0.27719089
+## 108 0.51434783
+## 109 0.28552060
+## 110 0.47158483
+## 112 0.40892570
+## 113 0.53339319
+## 115 0.51001953
+## 116 0.43881818
+## 117 0.34234396
+## 119 0.45068780
+## 120 0.42578348
+## 121 0.43532886
+## 122 0.63562450
+## 123 0.43037876
+## 124 0.43963450
+## 125 0.56069530
+## 127 0.64154178
+## 128 0.40839804
+## 129 0.31486573
+## 130 0.32458784
+## 131 0.58033035
+## 133 0.49009974
+## 134 0.44075357
+## 135 0.26326070
+## 136 0.37363918
+## 138 0.32035370
+## 140 0.74885547
+## 141 0.44685681
+## 142 0.34934191
+## 143 0.41997925
+## 144 0.13904381
+## 146 0.60943591
+## 147 0.19858386
+## 148 0.72214877
+## 149 0.42354512
+## 150 0.72381095
+## 152 0.61613548
+## 153 0.51278348
+## 154 0.37951861
+## 155 0.49841839
+## 156 0.50015573
+## 157 0.45317221
+## 158 0.56423530
+## 159 0.76343576
+## 160 0.57699743
+## 161 0.35485509
+## 162 0.17929383
+## 163 0.19232632
+## 164 0.38345343
+## 165 0.45087533
+## 166 0.07323036
+## 167 0.38039716
+## 168 0.41864518
+## 169 0.46094305
+## 170 0.68303120
+## 171 0.40553996
+## 172 0.66378058
+## 174 0.40706949
+## 175 0.03074071
+## 176 0.40378184
+## 177 0.36471851
+## 178 0.68298651
+## 180 0.43417069
+## 182 0.51567828
+## 183 0.31947577
+## 184 0.39605798
+## 185 0.52317415
+## 186 0.57894112
+## 187 0.56627442
+## 188 0.31206215
+## 191 0.59235820
+## 192 0.47224723
+## 194 0.79502844
+## 196 0.26562774
+## 197 0.15073557
+## 198 0.19929096
+## 199 0.26108880
+## 200 0.35335677
+## 201 0.34994165
+## 203 0.23550597
+## 204 0.13791914
+## 205 0.57409772
+## 207 0.30295569
+## 208 0.41835557
+## 209 0.44465781
+## 210 0.20929704
+## 211 0.21698316
+## 212 0.55387068
+## 213 0.72940826
+## 214 0.52494235
+## 215 0.41204210
+## 216 0.12059453
+## 217 0.36758534
+## 218 0.25926298
+## 221 0.64740884
+## 223 0.44518018
+## 224 0.27006237
+## 225 0.34206809
+## 226 0.41704915
+## 227 0.48583306
+## 228 0.49321869
+## 229 0.30719609
+## 231 0.25516013
+## 232 0.49616244
+## 233 0.78432968
+## 234 0.54872690
+## 235 0.51092537
+## 236 0.35062283
+## 237 0.57426955
+## 239 0.38422746
+## 241 0.60110201
+## 242 0.65042386
+## 243 0.28733292
+## 244 0.48410849
+## 245 0.52583639
+## 246 0.62978287
+## 247 0.46500749
+## 250 0.24447756
+## 251 0.48078258
+## 252 0.31608534
+## 253 0.50883127
+## 254 0.29920038
+## 255 0.70566011
+## 256 0.45072539
+## 257 0.31378908
+## 258 0.43039478
+## 259 0.32518095
+## 263 0.42438451
+## 265 0.43165252
+## 266 0.31472325
+## 267 0.66188268
+## 268 0.43543574
+## 269 0.50451318
+## 270 0.29998968
+## 272 0.28933703
+## 273 0.83189571
+## 274 0.63828642
+## 275 0.55298193
+## 276 0.37424287
+## 278 0.51058200
+## 279 0.39114553
+## 280 0.28339191
+## 281 0.19413729
+## 282 0.70280544
+## 283 0.46842916
+## 284 0.39645305
+## 285 0.34002812
+## 286 0.51716743
+## 287 0.44121115
+## 288 0.40082793
+## 289 0.37983727
+## 290 0.46094190
+## 291 0.57060536
+## 292 0.44086821
+## 293 0.79133937
+## 295 0.81474289
+## 298 0.32445754
+## 299 0.60027766
+## 300 0.58440405
+## 301 0.50949842
+## 302 0.45323865
+## 303 0.25608398
+## 304 0.68894857
+## 305 0.68492196
+## 306 0.43843719
+## 307 0.32355440
+## 308 0.31939419
+## 309 0.51377520
+## 310 0.61564492
+## 311 0.60485599
+## 312 0.40718041
+## 313 0.37010283
+## 314 0.64624722
+## 315 0.54696495
+## 318 0.44192614
+## 319 0.55919059
+## 322 0.50898799
+## 323 0.59089307
+## 324 0.63184281
+## 325 0.15761600
+## 326 0.70449698
+## 328 0.40039693
+## 329 0.24192181
+## 331 0.35651319
+## 332 0.53755190
+## 333 0.43731279
+## 335 0.48033864
+## 336 0.45306906
+## 337 0.29556775
+## 338 0.42177687
+## 339 0.41198983
+## 341 0.54454340
+## 342 0.42919642
+## 343 0.53232210
+## 344 0.33885498
+## 345 0.53417958
+## 346 0.28627521
+## 348 0.45213138
+## 349 0.86037249
+## 350 0.60338963
+## 351 0.55977573
+## 353 0.72617686
+## 354 0.55449079
+## 355 0.29004325
+## 357 0.33126885
+## 358 0.62950885
+## 359 0.29012215
+## 361 0.62387681
+## 362 0.49256357
+## 364 0.63920253
+## 365 0.61880180
+## 366 0.33224879
+## 367 0.32418824
+## 368 0.80327774
+## 369 0.64483787
+## 370 0.65683166
+## 371 0.43649696
+## 372 0.50300661
+## 374 0.39777637
+## 375 0.48434536
+## 377 0.96908460
+## 378 0.42658871
+## 379 0.40314916
+## 381 0.49067604
+## 382 0.16343142
+## 383 0.40036946
+## 384 0.56956387
+## 385 0.76034102
+## 387 0.33750384
+## 388 0.51282604
+## 389 0.57916759
+## 390 0.54766070
+## 392 0.38924104
+## 393 0.35408501
+## 394 0.40097666
+## 395 0.37326507
+## 396 0.82909695
+## 397 0.40917226
+## 398 0.42202683
+## 399 0.32961243
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nn}\OperatorTok{$}\NormalTok{residuals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]
+## 1    0.1269682528
+## 2   -0.0353817538
+## 3    0.0560995759
+## 6    0.0289046721
+## 7    0.0424093605
+## 9    0.0344928119
+## 10  -0.0260390597
+## 12  -0.0002627812
+## 13   0.0367240836
+## 14  -0.0681640357
+## 15   0.0462501086
+## 17  -0.0651686692
+## 18   0.0219433026
+## 19   0.0058796606
+## 22   0.0537015586
+## 23  -0.0051534825
+## 25   0.0059133718
+## 26   0.0803064832
+## 27  -0.0402111723
+## 28   0.0309854700
+## 29  -0.0667203185
+## 30   0.0948798022
+## 33   0.0252672086
+## 34  -0.0081290042
+## 35  -0.0915160628
+## 36   0.0510203174
+## 37  -0.0493591021
+## 38  -0.0953234776
+## 39   0.0534688714
+## 40  -0.0048277450
+## 41   0.0010116347
+## 42   0.0662614892
+## 43  -0.0531973972
+## 44  -0.0798504247
+## 45  -0.0616576184
+## 46   0.0057805127
+## 47  -0.0123055005
+## 48  -0.0738446833
+## 49  -0.0551522471
+## 51  -0.0871474734
+## 52   0.0099349145
+## 53   0.0815597310
+## 54   0.0514613880
+## 55   0.0164058285
+## 56   0.1069769361
+## 57   0.0733394586
+## 58   0.0203180529
+## 60  -0.0250886479
+## 61   0.0186185753
+## 62   0.0765420930
+## 63  -0.0485957358
+## 64  -0.0252209983
+## 66   0.0124372873
+## 69   0.0710303153
+## 70   0.0103881316
+## 71   0.0524402713
+## 72   0.0097074900
+## 73  -0.0241769855
+## 74  -0.0023329761
+## 75  -0.0161930706
+## 76  -0.0269160361
+## 77   0.0406668289
+## 78  -0.0438842908
+## 79   0.0361905030
+## 80   0.0149581901
+## 81  -0.0230849812
+## 82   0.0569294188
+## 83   0.0018176976
+## 84  -0.0253367890
+## 85  -0.0132821858
+## 86   0.0529064488
+## 90   0.0639638269
+## 91  -0.0103695021
+## 92   0.0311214802
+## 93  -0.0968607835
+## 94  -0.0411962927
+## 95   0.0531796646
+## 96   0.0659043042
+## 97  -0.0093811293
+## 98  -0.0608602486
+## 99   0.0329844911
+## 100  0.0275715954
+## 101 -0.1147505509
+## 102 -0.0826648671
+## 103 -0.0603120095
+## 105  0.0067673125
+## 108  0.0111592409
+## 109 -0.0722446283
+## 110  0.0803512476
+## 112 -0.0020418656
+## 113 -0.1234362131
+## 115  0.0621992746
+## 116  0.0860742575
+## 117 -0.0301128648
+## 119  0.0145857050
+## 120  0.0271974688
+## 121 -0.0130793194
+## 122  0.0816465533
+## 123 -0.0075145885
+## 124  0.0637459504
+## 125 -0.0155201314
+## 127  0.0511441451
+## 128 -0.0076604911
+## 129 -0.0100101667
+## 130 -0.0498490593
+## 131 -0.0634280808
+## 133  0.0962555199
+## 134  0.0275930828
+## 135 -0.0376921719
+## 136  0.0221813466
+## 138  0.0803838539
+## 140  0.0071371582
+## 141 -0.0762360353
+## 142  0.0520102728
+## 143  0.0373040970
+## 144 -0.1064685195
+## 146 -0.0704070259
+## 147  0.0411211167
+## 148 -0.0761745890
+## 149  0.0411137611
+## 150 -0.0182178379
+## 152  0.0458190363
+## 153 -0.0432075712
+## 154 -0.0150441125
+## 155 -0.0749395948
+## 156 -0.0262774257
+## 157  0.0071842711
+## 158  0.0633000455
+## 159  0.0066933133
+## 160 -0.0041639961
+## 161 -0.0678237451
+## 162  0.0007922179
+## 163  0.0307836938
+## 164 -0.0343446401
+## 165  0.0543490077
+## 166 -0.0504891184
+## 167  0.0320183323
+## 168 -0.0062296870
+## 169 -0.0122645023
+## 170  0.0225619149
+## 171  0.0867771929
+## 172  0.1038899769
+## 174 -0.0149367350
+## 175 -0.0307407147
+## 176  0.0596477878
+## 177 -0.0199121191
+## 178 -0.0388562101
+## 180  0.0440100115
+## 182 -0.0590095664
+## 183 -0.0281420296
+## 184 -0.0690758019
+## 185  0.0883808637
+## 186  0.0399894274
+## 187 -0.0327771908
+## 188  0.0585586227
+## 191 -0.0521000512
+## 192 -0.0622902529
+## 194  0.0211977411
+## 196 -0.0080985470
+## 197  0.1012619728
+## 198 -0.0444046708
+## 199 -0.0385934136
+## 200  0.0412345016
+## 201 -0.0082084014
+## 203  0.0164915682
+## 204 -0.0119203724
+## 205 -0.0369127171
+## 207  0.0025144966
+## 208  0.0850248894
+## 209  0.0335228857
+## 210 -0.0236793382
+## 211  0.0509947096
+## 212  0.0232651510
+## 213  0.0106040336
+## 214 -0.0191033825
+## 215 -0.1151767009
+## 216  0.0232284559
+## 217 -0.0154034131
+## 218  0.0074856412
+## 221  0.0034823700
+## 223  0.0151763018
+## 224 -0.0580156596
+## 225 -0.0900705518
+## 226 -0.0064775446
+## 227 -0.0064231001
+## 228  0.0408931735
+## 229  0.0247031060
+## 231  0.0619879974
+## 232  0.0010717323
+## 233  0.0232917130
+## 234 -0.0170735544
+## 235  0.0686689744
+## 236 -0.0107334609
+## 237 -0.0014361157
+## 239  0.0681388581
+## 241  0.0325796084
+## 242  0.0877445437
+## 243  0.0003130544
+## 244 -0.0034692787
+## 245  0.0138071253
+## 246 -0.0151547208
+## 247 -0.0409140701
+## 250  0.0659096599
+## 251  0.0822168098
+## 252 -0.0874436638
+## 253  0.0019247219
+## 254  0.0474498963
+## 255 -0.1168463403
+## 256  0.0231529100
+## 257 -0.0556452547
+## 258  0.1024878298
+## 259 -0.1119049859
+## 263 -0.0328663820
+## 265 -0.0044859539
+## 266  0.0116442992
+## 267 -0.1025710618
+## 268 -0.0771075280
+## 269 -0.1031610014
+## 270  0.0079390202
+## 272 -0.0096812257
+## 273 -0.0341083667
+## 274 -0.0211997529
+## 275 -0.1092204032
+## 276  0.0357141075
+## 278 -0.0311720429
+## 279  0.0526159954
+## 280 -0.0731890812
+## 281 -0.0183536356
+## 282 -0.0150365415
+## 283  0.0072930263
+## 284 -0.0670123655
+## 285  0.0883677016
+## 286 -0.0500500347
+## 287  0.0216038421
+## 288  0.0220362358
+## 289  0.0491731810
+## 290  0.0768577297
+## 291  0.0126767552
+## 292 -0.0327551211
+## 293 -0.0648488960
+## 295 -0.0366236547
+## 298 -0.1357667029
+## 299  0.0745840519
+## 300 -0.0066535932
+## 301  0.0172379078
+## 302  0.0022008055
+## 303  0.0684396848
+## 304 -0.0737057930
+## 305  0.0483294230
+## 306  0.0551092138
+## 307 -0.0297621472
+## 308  0.0432364191
+## 309  0.0541412063
+## 310  0.0715093539
+## 311 -0.0191153600
+## 312 -0.0291841022
+## 313  0.0478443168
+## 314 -0.0727991514
+## 315 -0.0724720155
+## 318 -0.0479494940
+## 319  0.0603545896
+## 322 -0.0467876222
+## 323 -0.0278936831
+## 324  0.0049119554
+## 325  0.0058750834
+## 326  0.0146179522
+## 328 -0.0174835961
+## 329 -0.0483139453
+## 331 -0.0498137419
+## 332  0.0832225363
+## 333 -0.0845162341
+## 335 -0.0113773581
+## 336 -0.0732288601
+## 337  0.0221950055
+## 338  0.1074179669
+## 339 -0.0450568270
+## 341 -0.0835722831
+## 342  0.0243991509
+## 343 -0.0522975103
+## 344  0.0293072781
+## 345 -0.0160480527
+## 346  0.0093609350
+## 348 -0.0292672178
+## 349 -0.0877849104
+## 350 -0.0305561957
+## 351 -0.0287370066
+## 353  0.0998833729
+## 354  0.0263328069
+## 355  0.0357096687
+## 357 -0.1112319734
+## 358  0.1916343541
+## 359 -0.0338222151
+## 361 -0.0848479240
+## 362  0.0409336683
+## 364 -0.0085940508
+## 365  0.0265577542
+## 366  0.0691033879
+## 367  0.0433593900
+## 368  0.0799429067
+## 369  0.0134288771
+## 370 -0.0262231741
+## 371  0.0355374640
+## 372  0.0550757545
+## 374 -0.0548138655
+## 375  0.0958636161
+## 377  0.0309154008
+## 378 -0.0080269371
+## 379 -0.0276113632
+## 381  0.1018255012
+## 382  0.0762735595
+## 383 -0.0961285210
+## 384  0.0051134520
+## 385  0.0294561559
+## 387 -0.0105216649
+## 388  0.0200565691
+## 389 -0.0788602756
+## 390 -0.0289145381
+## 392 -0.0143178665
+## 393 -0.0756584551
+## 394 -0.0586287814
+## 395 -0.0444390081
+## 396 -0.0565093650
+## 397 -0.0317905735
+## 398  0.0334126321
+## 399  0.0354766954
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nn}\OperatorTok{$}\NormalTok{convergence}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nn.preds <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(nn, test)}
+\NormalTok{nn.preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## 4   0.52492164
+## 5   0.38432905
+## 8   0.68397531
+## 11  0.50179272
+## 16  0.38242229
+## 20  0.49323962
+## 21  0.38124066
+## 24  0.32971971
+## 31  0.81335678
+## 32  0.50343907
+## 50  0.56832990
+## 59  0.30480105
+## 65  0.45752651
+## 67  0.52516181
+## 68  0.53667673
+## 87  0.47812364
+## 88  0.59500364
+## 89  0.38794429
+## 104 0.32987687
+## 106 0.48740525
+## 107 0.07985877
+## 111 0.50477311
+## 114 0.35664828
+## 118 0.49569199
+## 126 0.62905776
+## 132 0.39411909
+## 137 0.32369291
+## 139 0.61746150
+## 145 0.59843845
+## 151 0.63138310
+## 173 0.72917601
+## 179 0.66600984
+## 181 0.29094131
+## 189 0.39565177
+## 190 0.65815950
+## 193 0.37454806
+## 195 0.46735013
+## 202 0.37331622
+## 206 0.26942524
+## 219 0.62479603
+## 220 0.69132047
+## 222 0.37479586
+## 230 0.58108727
+## 238 0.44130552
+## 240 0.25604053
+## 248 0.12526856
+## 249 0.37192498
+## 260 0.32934887
+## 261 0.56314751
+## 262 0.36310753
+## 264 0.37947398
+## 271 0.76738119
+## 277 0.42623575
+## 294 0.71550733
+## 296 0.20949887
+## 297 0.62259603
+## 316 0.39875522
+## 317 0.86205794
+## 320 0.40744232
+## 321 0.37198999
+## 327 0.40063539
+## 330 0.67329425
+## 334 0.36187083
+## 340 0.61991128
+## 347 0.46384413
+## 352 0.57244094
+## 356 0.46414835
+## 360 0.26114357
+## 363 0.23152223
+## 373 0.44495473
+## 376 0.37367379
+## 380 0.38593845
+## 386 0.39344280
+## 391 0.37945137
+## 400 0.57828513
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MSE <-}\StringTok{ }\KeywordTok{mean}\NormalTok{((nn.preds }\OperatorTok{-}\StringTok{ }\NormalTok{test}\OperatorTok{$}\NormalTok{Sales)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{MSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.004864555
+\end{verbatim}
+
+\end{document}
